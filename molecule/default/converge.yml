@@ -1,0 +1,13 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include vdo.audit_fim"
+      ansible.builtin.include_role:
+        name: vdo.audit_fim
+      vars:
+        audit_fim_targets:
+          - path: '/etc/passwd'
+            permissions: 'wa' # (r)ead, (w)rite, e(x)ecute, (a)ttributes.
+          - path: '/etc/hosts'
+            permissions: 'wa'

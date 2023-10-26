@@ -1,0 +1,8 @@
+---
+# Vars used in tasks, changes are not recommended unless strictly needed.
+audit_fim_rules_dir: "/etc/audit/rules.d/"
+audit_fim_rules_file: "/etc/audit/rules.d/fim.rules"
+audit_fim_service_unit: "/lib/systemd/system/audit-fim.service"
+audit_fim_timer_unit: "/lib/systemd/system/audit-fim.timer"
+audit_fim_logrotate_file: "/etc/logrotate.d/audit-fim"
+audit_fim_date_time_format: '+%%H:%%M:%%S'

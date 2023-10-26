@@ -1,0 +1,3 @@
+{% for item in audit_fim_targets %}
+-w {{ item['path'] }} -p {{ item['permissions'] }} -k {{ audit_fim_key }}
+{% endfor %}

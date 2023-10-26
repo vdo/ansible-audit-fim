@@ -1,0 +1,60 @@
+---
+
+- name: Ensure auditd is installed
+  ansible.builtin.apt:
+    name: auditd
+    update_cache: true
+
+- name: Ensure auditd is enabled
+  ansible.builtin.systemd:
+    name: auditd
+    enabled: true
+
+- name: Create rules directory
+  ansible.builtin.file:
+    path: "{{ audit_fim_rules_dir }}"
+    state: directory
+    mode: "0700"
+
+- name: Configure audit rules
+  ansible.builtin.template:
+    dest: "{{ audit_fim_rules_file }}"
+    src: fim.rules.j2
+    mode: "0600"
+  notify:
+    - Restart auditd
+
+- name: Create service systemd unit
+  ansible.builtin.template:
+    dest: "{{ audit_fim_service_unit }}"
+    src: audit-fim.service.j2
+    mode: "0644"
+  notify:
+    - Restart service
+
+- name: Ensure service is enabled
+  ansible.builtin.systemd:
+    name: audit-fim.service
+    enabled: true
+
+- name: Create timer systemd unit
+  ansible.builtin.template:
+    dest: "{{ audit_fim_timer_unit }}"
+    src: audit-fim.timer.j2
+    mode: "0644"
+  notify:
+    - Restart timer
+
+- name: Ensure timer is enabled
+  ansible.builtin.systemd:
+    name: audit-fim.timer
+    enabled: true
+
+- name: Configure logrotate
+  ansible.builtin.template:
+    dest: "{{ audit_fim_logrotate_file }}"
+    src: logrotate.j2
+    mode: "0644"
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers

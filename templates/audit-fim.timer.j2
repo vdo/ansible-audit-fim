@@ -1,0 +1,11 @@
+[Unit]
+Description=Refresh audit-fim events timer
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec={{ audit_fim_refresh_time }}
+Unit=audit-fim.service
+AccuracySec=1s
+
+[Install]
+WantedBy=timers.target

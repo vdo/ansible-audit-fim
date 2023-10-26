@@ -1,0 +1,9 @@
+---
+audit_fim_targets: []
+  # - path: '/etc/passwd'
+  #   permissions: 'wa' # (r)ead, (w)rite, e(x)ecute, (a)ttributes.
+  # - path: '/etc/hosts'
+  #   permissions: 'wa'
+audit_fim_key: "audit-fim"
+audit_fim_log_file: "/var/log/audit/audit-fim.log"
+audit_fim_refresh_time: 5min

@@ -1,0 +1,12 @@
+[Unit]
+Description=audit-fim events collector
+
+[Service]
+Type=exec
+ExecStart=-/usr/bin/bash -c "ausearch -ts $(date -d '{{ audit_fim_refresh_time }} ago' '{{ audit_fim_date_time_format }}') -k {{ audit_fim_key }} --format text 2>/dev/null"
+SyslogIdentifier={{ audit_fim_key }}
+StandardOutput=append:{{ audit_fim_log_file }}
+AccuracySec=1s
+
+[Install]
+WantedBy=multi-user.target
