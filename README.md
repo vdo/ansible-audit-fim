@@ -27,7 +27,7 @@ Example Playbook
   become: true
   vars:
     audit_fim_targets:
-      - path: '/home/user/.bashrc'
+      - path: '/home/alice/.bashrc'
         permissions: 'w'
       - path: '/etc/passwd'
         permissions: 'wa' # (r)ead, (w)rite, e(x)ecute, (a)ttributes.
@@ -36,7 +36,12 @@ Example Playbook
   roles:
     - vdo.audit_fim
 ```
-
+The logs generated have the following format:
+```
+At 10:44:47 10/26/23 alice successfully opened-file /home/alice/.bashrc using /usr/bin/vim.basic
+At 11:05:44 10/26/23 alice successfully opened-file /home/alice/.bashrc using bash
+At 11:06:14 10/26/23 alice, acting as root, successfully opened-file /etc/hosts using bash
+```
 License
 -------
 Apache License 2.0
