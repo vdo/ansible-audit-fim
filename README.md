@@ -15,7 +15,7 @@ The relevant variables are the following:
 |---|---|---|
 |`audit_fim_targets`| Files or directories to monitor (required) | []
 |`audit_fim_key`| Key used in audit to track events | `audit-fim`
-|`audit_fim_log_file`| Log file to store events | `/var/log/audit/audit-fim.log`
+|`audit_fim_log_file`| Log file to store events | `/var/log/audit-fim.log`
 |`audit_fim_refresh_time`| Time between parsing events | `5min`
 
 Example Playbook
